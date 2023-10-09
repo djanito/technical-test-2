@@ -58,6 +58,10 @@ export default () => {
                 <div>Address</div>
                 <textarea className="projectsInput h-auto py-2" name="address" value={values.address} onChange={(e) => setValues({ ...values, address: e.target.value })} />
               </div>
+              <div className="w-full md:w-[48.5%]">
+                <div>Avatar</div>
+                <input className="projectsInput h-auto py-2" placeholder="URL of the image" name="avatar" value={values.avatar} onChange={(e) => setValues({ ...values, avatar: e.target.value })} />
+              </div>
             </div>
             <hr className="my-4" />
             <div className="flex justify-end">
