@@ -24,7 +24,7 @@ export default function ProjectView() {
   useEffect(() => {
     (async () => {
       const { data: u } = await api.get(`/project/${id}`);
-      setProject(u);
+      setProject(u[0]);
     })();
   }, []);
 
@@ -60,7 +60,6 @@ export default function ProjectView() {
 }
 
 const ProjectDetails = ({ project }) => {
-  console.log(project);
   return (
     <div>
       <div className="flex flex-wrap p-3">
@@ -111,11 +110,13 @@ const Budget = ({ project }) => {
       }
       const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1));
       const { data } = await api.get(`/activity?projectId=${encodeURIComponent(project._id)}&date=${dateQuery}${date.getTime()}`);
+
       setActivities(data);
     })();
   }, []);
 
   const total = activities.reduce((acc, cur) => acc + cur.value, 0);
+  console.log(total);
   const budget_max_monthly = project.budget_max_monthly;
   const width = (100 * total) / budget_max_monthly || 0;
 
